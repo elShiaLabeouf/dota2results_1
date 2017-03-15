@@ -10,36 +10,40 @@ import java.nio.charset.Charset;
 
 public class PageReader {
 
-    public String getSource(String webpage) throws MalformedURLException, IOException {
+	public String getSource(String webpage) throws MalformedURLException,
+			IOException {
 
-        BufferedReader br = null;
-        StringBuilder sb = null;
-        
-        URLConnection connection = new URL(webpage).openConnection();
-        connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11");
-        connection.connect();
-        
-        try {
+		BufferedReader br = null;
+		StringBuilder sb = null;
 
-            URL url = new URL(webpage);
-            br = new BufferedReader(new InputStreamReader(connection.getInputStream(), Charset.forName("UTF-8")));
+		URLConnection connection = new URL(webpage).openConnection();
+		connection
+				.setRequestProperty(
+						"User-Agent",
+						"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11");
+		connection.connect();
 
-            String line;
+		try {
 
-            sb = new StringBuilder();
+			br = new BufferedReader(new InputStreamReader(
+					connection.getInputStream(), Charset.forName("UTF-8")));
 
-            while ((line = br.readLine()) != null) {
+			String line;
 
-                sb.append(line);
-                sb.append(System.lineSeparator());
-            }
+			sb = new StringBuilder();
 
-        } finally {
+			while ((line = br.readLine()) != null) {
 
-            if (br != null) {
-                br.close();
-            }
-        }
+				sb.append(line);
+				sb.append(System.lineSeparator());
+			}
+
+		} finally {
+
+			if (br != null) {
+				br.close();
+			}
+		}
 		return sb.toString();
-    }
+	}
 }
