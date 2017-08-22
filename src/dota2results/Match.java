@@ -1,6 +1,7 @@
 package dota2results;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class Match {
 
@@ -9,11 +10,11 @@ public class Match {
 	public String where;
 	public String team1;
 	public String team2;
-	public byte result;
+	public String result;
 	public long time;
 
 	public Match(long id, Date when, String where, String team1, String team2,
-			byte result, long time) {
+			String result, long time) {
 		this.id = id;
 		this.result = result;
 		this.team1 = team1;
@@ -32,4 +33,23 @@ public class Match {
 		System.out.println("result: " + result);
 		System.out.println("time: " + time);
 	}
+	
+	@Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Match match = (Match) o;
+        return Objects.equals(id, match.id) &&
+        		Objects.equals(when, match.when) &&
+        		Objects.equals(where, match.where) &&
+        		Objects.equals(team1, match.team1) &&
+        		Objects.equals(team2, match.team2) &&
+        		Objects.equals(result, match.result) &&
+        		Objects.equals(time, match.time);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, when, where, team1, team2, result, time);
+    }
 }

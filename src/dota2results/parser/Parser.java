@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface Parser {
 	List<Match> parse(String page);
+
 }
