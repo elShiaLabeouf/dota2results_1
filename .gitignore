@@ -1,0 +1,7 @@
+.project
+/.settings/
+/.bin/
+.classpath
+Scheme.png
+mongo-java-driver-3.4.2.jar
+mongodb-driver-3.4.2-javadoc.jar
